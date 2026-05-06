@@ -4,7 +4,23 @@ import Chart from "../../components/Chart05";
 import instruction from "./instruction.md?raw";
 
 const convertData = (input) => {
-  return []; // ここを作りましょう！
+  const result = {};
+
+  input.forEach((item) => {
+    const bin = String(Math.round(item.y));
+
+    if (!result[bin]) {
+      result[bin] = {
+        bin: bin,
+        男性: 0,
+        女性: 0
+      };
+    }
+
+    result[bin][item.gender] += 1;
+  });
+
+  return Object.values(result);
 };
 
 const Lesson = () => {
